@@ -1,6 +1,4 @@
-// Gavin Taylor
-// 2/14/2022
-
+2/14/2022
 
 #include <iostream>
 using namespace std;
