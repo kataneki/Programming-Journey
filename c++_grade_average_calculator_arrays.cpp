@@ -38,8 +38,11 @@ int main() {
 	cout << fixed << showpoint << setprecision(2);
 	cout << studentAverage << endl << endl;
 	cout << "Here are your grades:" << endl;
+	cout << setw(25);
 	cout << assignment[0] << ": " << grade[0] << endl;
+	cout << setw(25);
 	cout << assignment[1] << ": " << grade[1] << endl;
+	cout << setw(25);
 	cout << assignment[2] << ": " << grade[2] << endl << endl;
 	cout << "Thank you for playing." << endl << endl;
 
