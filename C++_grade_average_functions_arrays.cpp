@@ -5,9 +5,8 @@
 using namespace std;
 
 void nameStudent(string& studentName) {
-	string nameOfStudent;
 	cout << "Enter the students first and last name: ";
-	getline(cin, nameOfStudent);
+	getline(cin, studentName);
 	cout << endl;
 }
 
@@ -31,15 +30,14 @@ void gradeAssignments(int assignmentGrade[], string assignments[]) {
 	cout << endl;
 }
 
-void averageAssignments(string studentName, int assignmentGrade[]) {
-	double averageGrade;
-	averageGrade = (assignmentGrade[0] + assignmentGrade[1] + assignmentGrade[2]) / 3;
+void averageAssignments(double& studentAverage, int assignmentGrade[]) {
+	studentAverage = (assignmentGrade[0] + assignmentGrade[1] + assignmentGrade[2]) / 3;
 }
 
-void displayGrade(int assignmentGrade[], string assignments[], string nameStudent) {
-	cout << "The average for " << nameStudent << " is ";
+void displayGrade(int assignmentGrade[], string assignments[], string studentName, double studentAverage) {
+	cout << "The average for " << studentName << " is ";
 	cout << fixed << showpoint << setprecision(2);
-	cout << averageAssignments << endl << endl;
+	cout << studentAverage << endl << endl;
 	cout << "Here are your grades:" << endl;
 	cout << setw(20) << right << assignments[0] << ": " << assignmentGrade[0] << endl;
 	cout << setw(20) << right << assignments[1] << ": " << assignmentGrade[1] << endl;
@@ -56,8 +54,8 @@ int main() {
 	nameStudent(studentName);
 	nameAssignments(assignments);
 	gradeAssignments(assignmentGrade, assignments);
-	averageAssignments(studentName, assignmentGrade);
-	displayGrade(assignmentGrade, assignments, studentName);
+	averageAssignments(studentAverage, assignmentGrade);
+	displayGrade(assignmentGrade, assignments, studentName, studentAverage);
 
 	return 0;
 }
