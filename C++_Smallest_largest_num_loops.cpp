@@ -4,21 +4,28 @@ using namespace std;
 
 int main()
 {
-    int userInputMax = 0;
-    int userInputMin = 0;
-    int userInput = 0;
+    int userInputMax;
+    int userInputMin;
+    int userInput;
+
+    cout << "Enter an integer that is NOT '-99', when finished enter '-99': ";
+    cin >> userInput;
+    userInputMin = userInput;
+    userInputMax = userInput;
+
 
     while (userInput != -99) {
         cout << "Enter an integer that is NOT '-99', when finished enter '-99': ";
-        cin >> userInput;
 
-        if (userInput > userInputMax and userInput != -99) {
+        if (userInput > userInputMax) {
             userInputMax = userInput;
         }
 
-        if (userInput < userInputMin and userInput != -99) {
+        if (userInput < userInputMin) {
             userInputMin = userInput;
         }
+
+        cin >> userInput;
     }
 
     cout << "\nThe smallest integer entered is: " << userInputMin << ", and the largest integer entered is: " << userInputMax << "." << endl;
