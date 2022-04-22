@@ -4,7 +4,7 @@
    PA3_Starter.cpp
    Write a description of the program
 ********************************/
-// Headers
+
 #include <iostream> // cout, cin
 #include <cstdlib> // exit()
 #include <string> // strings
@@ -36,10 +36,10 @@ int main()
     const int gradeCount = 5;
     string fileName;
     int grade = 0;
-    int studentCount = 25;
+    int studentCount = 0;
 
     // Get students and grades
-    loadStudentNamesGrades(students, grades, fileName, maxStudents);
+    studentCount = loadStudentNamesGrades(students, grades, fileName, maxStudents);
 
     // Loop until user says to quit
 
@@ -94,10 +94,11 @@ int loadStudentNamesGrades(string students[], int grades[][MAX_GRADES], string f
     string firstName, lastName;
     int numRow = 0;
     ifstream inputFile;
+    int countStudents = 0;
 
     inputFile.open("NamesGrades.txt");
 
-    for (int i = 0; i < maxStudents && (inputFile >> firstName >> lastName); i++, numRow) {
+    for (int i = 0; i < maxStudents && (inputFile >> firstName >> lastName); i++, countStudents++, numRow) {
         students[i] = firstName + " " + lastName;
         for (int j = 0; j < MAX_GRADES; j++) {
             inputFile >> grades[i][j];
@@ -106,7 +107,7 @@ int loadStudentNamesGrades(string students[], int grades[][MAX_GRADES], string f
 
     inputFile.close();
 
-    return 0; // for stub out purposes, change this in your code
+    return countStudents; // for stub out purposes, change this in your code
 }
 
 /***********************************************************
@@ -123,7 +124,9 @@ POST: table of student names, averages, and letter grades is displayed
 ************************************************************/
 void displayAverages(string students[], int grades[][MAX_GRADES], int studentCount)
 {
-    int gradeAverage[22];
+    int gradeAverage[25]; 
+
+    cout << studentCount;
 
     for (int i = 0; i < studentCount; i++) {
         gradeAverage[i] = grades[i][0] + grades[i][1] + grades[i][2] + grades[i][3] + grades[i][4];
@@ -138,6 +141,7 @@ void displayAverages(string students[], int grades[][MAX_GRADES], int studentCou
     for (int u = 0; u < studentCount; u++) {
         cout << students[u] << " " << gradeAverage[u] << "CALL LETTER GRADE FUNCTION HERE" << endl;
     }
+    cout << endl;
 }
 
 /***********************************************************
@@ -154,7 +158,7 @@ POST: table of student names, maximum grades, and letter grades is displayed
 ************************************************************/
 void displayMax(string students[], int grades[][MAX_GRADES], int studentCount)
 {
-    double studentGrade[22];
+    int studentGrade[25];
 
     for (int a = 0; a < studentCount; a++) {
         studentGrade[a] = grades[a][0];
@@ -169,8 +173,9 @@ void displayMax(string students[], int grades[][MAX_GRADES], int studentCount)
     cout << "Name" << "Max" << "Grade" << endl;
 
     for (int u = 0; u < studentCount; u++) {
-        cout << students[u] << " " << studentGrade[u] << " CALL GET LETTER GRADE HERE" << endl;
+        cout << students[u] << " " << studentGrade[u] << " " << getLetterGrade(studentGrade[u]) << endl;
     }
+    cout << endl;
 }
 
 /***********************************************************
@@ -187,7 +192,7 @@ POST: table of student names, minimum grades, and letter grades is displayed
 ************************************************************/
 void displayMin(string students[], int grades[][MAX_GRADES], int studentCount)
 {
-    int grade[22];
+    int grade[25];
 
     for (int a = 0; a < studentCount; a++) {
         grade[a] = grades[a][0];
@@ -202,8 +207,9 @@ void displayMin(string students[], int grades[][MAX_GRADES], int studentCount)
     cout << "Name          " << "Min         " << "Grade" << endl;
 
     for (int u = 0; u < studentCount; u++) {
-        cout << students[u] << " " << grade[u] << " CALL LETTER GRADE FUNCTION HERE" << endl;
+        cout << setw(17) << left << students[u] << setw(8) << right << grade[u] << setw(5) << getLetterGrade(grade[u]) << endl;
     }
+    cout << endl;
 }
 
 /***********************************************************
@@ -213,26 +219,23 @@ PARAM: grade is the numerical grade to convert. Expected range is 0 <= grade
 PRE: grade contains a value in the correct range
 POST: The corresponding letter grade of the numerical grade is returned
 ************************************************************/
-char getLetterGrade(double& grade)
+char getLetterGrade(double grade)
 {
-    for (int s = 0; s < 22; s++) {
         if (grade >= 0 and grade < 60) {
-            cout << "F" << endl;
+            return 'F';
         }
-        if (grade >= 60 and grade < 70) {
-            cout << "D" << endl;
+        else if (grade >= 60 and grade < 70) {
+            return 'D';
         }
-        if (grade >= 70 and grade < 80) {
-            cout << "C" << endl;
+        else if (grade >= 70 and grade < 80) {
+            return 'C';
         }
-        if (grade >= 80 and grade < 90) {
-            cout << "B" << endl;
+        else if (grade >= 80 and grade < 90) {
+            return 'B';
         }
-        if (grade >= 90 and grade <= 100) {
-            cout << "A" << endl;
+        else {
+            return 'A';
         }
-    }
-    return 0;
 }
 
 /***********************************************************
@@ -246,10 +249,6 @@ POST: The length of the longest string in students[] is returned
 /******************************
 int getLongestNameLength(string students[], int studentCount)
 {
-
-
-
-
-
+    
 }
 *******************************/
