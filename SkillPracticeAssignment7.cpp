@@ -1,8 +1,3 @@
-/************************
-Gavin Taylor
-04/23/2022
-Searching assignment
-**************************/
 #include <iostream>
 using namespace std;
 
