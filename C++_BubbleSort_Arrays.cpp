@@ -120,7 +120,7 @@ void sortRain(float rainAmount[], string rainMonth[])
     do
     {
         swap = false;
-        for (int c = 0; c < 12; c++)
+        for (int c = 0; c < 11; c++)
         {
             if (rainAmount[c] > rainAmount[c + 1])
             {
